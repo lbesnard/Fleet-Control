@@ -22,6 +22,7 @@
     - act # github action
     - angle-grinder
     - ansible
+    - ansible-lint
     - autojump
     - awscli
     - bat
@@ -38,6 +39,7 @@
     - gcc
     - git
     - git-delta
+    - gitui
     - gh # github cli
     - glow
     - grc
@@ -62,6 +64,7 @@
     - pyenv-virtualenv
     - ranger
     - rbenv
+    - rclone
     - ripgrep
     - sad
     - sk
@@ -76,6 +79,7 @@
     - urlview
     - vim
     - viu
+    - wifitui
     - xclip
     - yazi
     - yt-dlp
