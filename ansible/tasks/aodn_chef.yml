@@ -6,7 +6,7 @@
     state: directory
     mode: 0775
 
-- name: clone AODN repos "{{item.name}}"
+- name: clone AODN repos
   become: yes
   become_user: "{{user}}"
   git:
@@ -16,6 +16,8 @@
     track_submodules: yes
     clone: yes
     update: no
+  loop_control:
+    label: "{{ item.name }}"
   with_items:
     - { url: "{{repo_chef_private}}", name: chef-private }
     - { url: "{{repo_cloud_deploy}}", name: cloud-deploy }

@@ -6,7 +6,7 @@
     state: directory
     mode: 0775
 
-- name: clone repo "{{item.name}}"
+- name: clone GitHub repos
   become: yes
   become_user: "{{user}}"
   git:
@@ -17,6 +17,8 @@
     #depth: 1
     clone: yes
     update: no
+  loop_control:
+    label: "{{ item.name }}"
   with_items:
     - { url: "{{repo_ml_course}}", name: BuildingMachineLearningSystemsWithPython }
     - { url: "{{repo_Fleet_Control}}", name: Fleet-Control }

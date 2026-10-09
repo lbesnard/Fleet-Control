@@ -6,7 +6,7 @@
     state: directory
     mode: 0775
 
-- name: clone repo "{{item.name}}"
+- name: clone data-services repos
   become: yes
   become_user: "{{user}}"
   git:
@@ -16,6 +16,8 @@
     track_submodules: yes
     clone: yes
     update: no
+  loop_control:
+    label: "{{ item.name }}"
   with_items:
     - { url: "{{repo_data_services}}", name: data-services }
   ignore_errors: true
