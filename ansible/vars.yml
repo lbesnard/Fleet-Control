@@ -38,7 +38,7 @@ toolbox_install_dir: "{{user_home}}/bin"
 inotify_max_user_watches: "524288"
 
 # deb packages url
-light_url: https://github.com/haikarainen/light/releases/download/v1.2/light_1.2_amd64.deb
+# light_url: gone - upstream haikarainen/light repo no longer exists
 skype_url: https://repo.skype.com/latest/skypeforlinux-64.deb
 zoom_url: https://zoom.us/client/latest/zoom_amd64.deb
 vagrant_url: https://releases.hashicorp.com/vagrant/2.2.10/vagrant_2.2.10_x86_64.deb
