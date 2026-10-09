@@ -37,11 +37,12 @@
      group: video
      mode: 0664
 
-- name: install light
-  ignore_errors: yes
-  apt:
-    deb: "{{light_url}}"
-    only_upgrade: yes
+# Disabled: the upstream haikarainen/light GitHub repo/releases no longer exist (404).
+# - name: install light
+#   ignore_errors: yes
+#   apt:
+#     deb: "{{light_url}}"
+#     only_upgrade: yes
 
 - name: add user to video group to use light
   user:
