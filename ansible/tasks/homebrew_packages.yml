@@ -1,3 +1,12 @@
+# Upgrading the brew ansible while it is running deletes its own files
+# mid-play (lookup/action plugins vanish). Pin it; upgrade manually with
+# `brew unpin ansible && brew upgrade ansible` outside of a playbook run.
+- name: Pin brew ansible so upgrade_all cannot replace the running install
+  command: /home/linuxbrew/.linuxbrew/bin/brew pin ansible
+  become: false
+  changed_when: false
+  failed_when: false
+
 - name: Update homebrew and upgrade all packages
   homebrew:
     path: "/home/linuxbrew/.linuxbrew/bin:/home/{{ ansible_user }}/.linuxbrew/bin"
