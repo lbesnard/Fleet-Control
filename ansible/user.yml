@@ -17,6 +17,7 @@
       loop:
         - dotfiles
         - homebrew_packages
+        - miniforge
         - neovim
         - miniforge_packages
         - cheat

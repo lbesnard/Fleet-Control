@@ -29,7 +29,8 @@ conda_path: "{{user_home}}/anaconda3"
 conda_url: https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Linux-x86_64.sh
 conda_md5: md5:be4ff0ed859e3e3b6d7611383294c70a
 
-miniforge_url: "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
+miniforge_version: "26.7.2-0"
+miniforge_url: "https://github.com/conda-forge/miniforge/releases/download/{{ miniforge_version }}/Miniforge3-Linux-x86_64.sh"
 miniforge_path: "{{user_home}}/miniforge3"
 
 # jetbrains

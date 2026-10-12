@@ -41,14 +41,13 @@
       get_url:
         url: "{{nerd_font_1_url}}"
         dest: "{{user_home}}/.local/share/fonts/Droid Sans Mono for Powerline Nerd Font Complete.otf"
+    # Current nerd-fonts install.sh needs the `install` subcommand and
+    # downloads the font from the GitHub releases (no patched-fonts/ in the clone).
     - name: install SourceCodePro
-      shell: "{{github_repo_dir}}/nerd-fonts/install.sh SourceCodePro"
-      ignore_errors: yes
-    - name: install SourceCodeProMono
-      shell: "ln -sf {{github_repo_dir}}/nerd-fonts/patched-fonts/SourceCodePro/SauceCodeProNerdFontMono-* {{user_home}}/.local/share/fonts/NerdFonts/"
+      shell: "{{github_repo_dir}}/nerd-fonts/install.sh install SourceCodePro"
       ignore_errors: yes
     - name: install JetBrainsMono
-      shell: "{{github_repo_dir}}/nerd-fonts/install.sh JetBrainsMono"
+      shell: "{{github_repo_dir}}/nerd-fonts/install.sh install JetBrainsMono"
       ignore_errors: yes
     - name: "install fonts"
       shell: "fc-cache -f -v"

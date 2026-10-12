@@ -10,16 +10,17 @@
   become: yes
   become_user: "{{user}}"
   git:
-    repo: "{{item.url}}"
-    dest: "{{github_repo_dir}}/{{item.name}}"
+    repo: "{{repo.url}}"
+    dest: "{{github_repo_dir}}/{{repo.name}}"
     accept_hostkey: yes
     track_submodules: yes
     #depth: 1
     clone: yes
     update: no
   loop_control:
-    label: "{{ item.name }}"
-  with_items:
+    loop_var: repo
+    label: "{{ repo.name }}"
+  loop:
     - { url: "{{repo_ml_course}}", name: BuildingMachineLearningSystemsWithPython }
     - { url: "{{repo_Fleet_Control}}", name: Fleet-Control }
     - { url: "{{repo_imos_user_code_library}}", name: imos-user-code-library }

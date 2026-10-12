@@ -9,7 +9,7 @@
       get_url:
         url: "{{miniforge_url}}"
         dest: /tmp/install-miniforge.sh
-        mode: 0550
+        mode: "0755"
     - name: Create miniforge folder
       become: yes
       become_user: "{{ ansible_user }}"
@@ -23,7 +23,8 @@
     - name: Run the installer
       become: yes
       become_user: "{{ ansible_user }}"
-      shell: "/tmp/install-miniforge.sh -b -u -s"
+      # -b: batch mode, accepts the interactive defaults (license, prefix {{miniforge_path}})
+      command: "/tmp/install-miniforge.sh -b -u -p {{miniforge_path}}"
     - name: Remove the installer
       file:
         state: absent

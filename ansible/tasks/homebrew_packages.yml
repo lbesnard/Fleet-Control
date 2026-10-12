@@ -7,6 +7,29 @@
   changed_when: false
   failed_when: false
 
+# Brew ignores formulae from untrusted taps (and warns on every upgrade).
+# Trust only the specific formulae we use. Errors are ignored on a fresh
+# install where the taps are not yet present.
+- name: Trust third-party tap formulae
+  command: "/home/linuxbrew/.linuxbrew/bin/brew trust --formula {{ item }}"
+  loop:
+    - fernandotcl/fernandotcl/monkeys-audio
+    - jstkdng/programs/ueberzugpp
+  become: false
+  changed_when: false
+  failed_when: false
+
+# icu4c@75 is an old versioned formula (ICU library) that Homebrew disabled on
+# 2025-10-24. If it is still installed, `brew upgrade` aborts trying to fetch
+# it. Nothing installed depends on it, so remove it before upgrading.
+# No-op when it is not installed.
+- name: Remove disabled versioned formula icu4c@75
+  command: "/home/linuxbrew/.linuxbrew/bin/brew uninstall --ignore-dependencies icu4c@75"
+  become: false
+  register: brew_icu_removal
+  changed_when: "'Uninstalling' in brew_icu_removal.stdout"
+  failed_when: false
+
 - name: Update homebrew and upgrade all packages
   homebrew:
     path: "/home/linuxbrew/.linuxbrew/bin:/home/{{ ansible_user }}/.linuxbrew/bin"
