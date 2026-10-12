@@ -1,0 +1,17 @@
+# Both installers are non-interactive and put their binary in ~/.local/bin
+# UV_NO_MODIFY_PATH: don't let uv edit shell rc files (managed by dotfiles)
+- name: install uv
+  shell: "curl -LsSf https://astral.sh/uv/install.sh | sh"
+  environment:
+    UV_NO_MODIFY_PATH: "1"
+  args:
+    executable: /bin/bash
+    creates: "{{ user_home }}/.local/bin/uv"
+  become: false
+
+- name: install poetry
+  shell: "curl -sSL https://install.python-poetry.org | python3 -"
+  args:
+    executable: /bin/bash
+    creates: "{{ user_home }}/.local/bin/poetry"
+  become: false
