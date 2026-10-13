@@ -53,7 +53,6 @@
       - p7zip
       - ncdu
       - python3-apt
-      - python3.11
       - coreutils
       - wget
       - zsh
