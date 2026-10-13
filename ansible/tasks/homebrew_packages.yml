@@ -11,7 +11,9 @@
 # Trust only the specific formulae we use. Errors are ignored on a fresh
 # install where the taps are not yet present.
 - name: Trust third-party tap formulae
-  command: "/home/linuxbrew/.linuxbrew/bin/brew trust --formula {{ item }}"
+  command: "/home/linuxbrew/.linuxbrew/bin/brew trust --formula {{ formula }}"
+  loop_control:
+    loop_var: formula
   loop:
     - fernandotcl/fernandotcl/monkeys-audio
     - jstkdng/programs/ueberzugpp
