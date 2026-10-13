@@ -1,0 +1,6 @@
+- name: install zerobrew
+  shell: "curl -fsSL https://zerobrew.rs/install | bash"
+  args:
+    executable: /bin/bash
+    creates: "{{ user_home }}/.local/bin/zb"
+  become: false

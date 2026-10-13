@@ -21,6 +21,7 @@
         - neovim
         - miniforge_packages
         - python_tools
+        - zerobrew_install
         - cheat
         - aodn_chef
         - data_services
