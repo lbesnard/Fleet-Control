@@ -56,7 +56,7 @@ ansible-galaxy collection install -r requirements.yml -p ./collections
 Execute the playbook against the specific inventory generated in step 1.
 
 ```bash
-ansible-playbook -i inventory/brownfunk.ini setup_homelabs.yml --ask-vault-pass # or generate a .vault_pass file
+ansible-playbook -i inventory/brownfunk.ini setup_homelabs.yml --ask-vault-pass # or --vault-password-file ansible/.vault_pass
 ```
 
 ---

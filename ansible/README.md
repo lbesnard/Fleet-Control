@@ -104,6 +104,10 @@ install manuall vbox ext pack because of manual licencing
 # Proxmox provisionning 🧱
 
 ### Location-Based Execution
+These playbooks use the encrypted `vars/vault.yml` / `vars/paths.yml`, so they need the vault password
+(`--ask-vault-pass`, `--vault-password-file .vault_pass`, or `export ANSIBLE_VAULT_PASSWORD_FILE=.vault_pass`).
+The local / `ansible-pull` playbooks (`local.yml`, `user.yml`, `remote.yml`) do not.
+
 | Location | Command |
 | :--- | :--- |
 | **BrownFunk** | `ansible-playbook -i inventories/brownfunk.ini setup_homelabs.yml"` |
