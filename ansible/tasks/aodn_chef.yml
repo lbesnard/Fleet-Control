@@ -22,104 +22,104 @@
     - { url: "{{repo_chef_private}}", name: chef-private }
     - { url: "{{repo_cloud_deploy}}", name: cloud-deploy }
     - { url: "{{repo_chef}}", name: chef }
-    - { url: "{{repo_imos_toolbox}}", name: imos-toolbox }
+    # - { url: "{{repo_imos_toolbox}}", name: imos-toolbox }
   ignore_errors: true
 
 ######################
 # IMOS TOOLBOX CONDA
 ######################
-- name: create imos-toolbox yaml conda file
-  ignore_errors: yes
-  copy:
-      content: |
-        name: "{{conda_imos_toolbox}}"
-        channels:
-          - conda-forge
-          - defaults
-        dependencies:
-          - cython
-          - python=3.6
-          - pip
-          - pip:
-            - docopt
-            - boto3
-            - botocore
-            - gitPython
-      dest: "{{ github_repo_dir }}/imos-toolbox/environment.yml"
-      backup: yes
-
-- name: create imos-toolbox mamba env
-  shell: "[[ $({{miniforge_path}}/condabin/mamba env list | cut -d' ' -f1) = *'{{conda_imos_toolbox}}'* ]] && echo '{{conda_imos_toolbox}} mamba env already installed' || {{miniforge_path}}/condabin/mamba env create -f environment.yml"
-  args:
-    executable: /bin/bash
-    chdir: "{{github_repo_dir}}/imos-toolbox"
-  become: yes
-  become_user: "{{ user }}"
-  ignore_errors: true
-
-- name: update imos-toolbox mamba env
-  shell: "{{miniforge_path}}/condabin/mamba env update -f environment.yml"
-  args:
-    chdir: "{{github_repo_dir}}/imos-toolbox"
-  become: yes
-  become_user: "{{ user }}"
-  ignore_errors: true
-
+# - name: create imos-toolbox yaml conda file
+#   ignore_errors: yes
+#   copy:
+#       content: |
+#         name: "{{conda_imos_toolbox}}"
+#         channels:
+#           - conda-forge
+#           - defaults
+#         dependencies:
+#           - cython
+#           - python=3.6
+#           - pip
+#           - pip:
+#             - docopt
+#             - boto3
+#             - botocore
+#             - gitPython
+#       dest: "{{ github_repo_dir }}/imos-toolbox/environment.yml"
+#       backup: yes
+#
+# - name: create imos-toolbox mamba env
+#   shell: "[[ $({{miniforge_path}}/condabin/mamba env list | cut -d' ' -f1) = *'{{conda_imos_toolbox}}'* ]] && echo '{{conda_imos_toolbox}} mamba env already installed' || {{miniforge_path}}/condabin/mamba env create -f environment.yml"
+#   args:
+#     executable: /bin/bash
+#     chdir: "{{github_repo_dir}}/imos-toolbox"
+#   become: yes
+#   become_user: "{{ user }}"
+#   ignore_errors: true
+#
+# - name: update imos-toolbox mamba env
+#   shell: "{{miniforge_path}}/condabin/mamba env update -f environment.yml"
+#   args:
+#     chdir: "{{github_repo_dir}}/imos-toolbox"
+#   become: yes
+#   become_user: "{{ user }}"
+#   ignore_errors: true
+#
 ######################
 # AODNDATA CONDA
 ######################
 
-- name: create python-aodndata mamba yaml
-  ignore_errors: yes
-  copy:
-      content: |
-        # An environment file for Project Officers wanted to use Conda rather than
-        # virtualenv
-        # This is based on scripts/setup_virtualenv.sh and doesn't interfere with the
-        # wheel package
-        # stage values are "build", "rc", "production"
-        # mamba env create --file=stage_environment.yml
-        # mamba env update --file=stage_environment.yml
-        name: "{{conda_aodndata}}"
-        channels:
-          - conda-forge
-          - defaults
-          - pypi
-        dependencies:
-          - cython
-          - python=3.8
-          - cartopy=0.20.3
-          - cf-units
-          - pip
-          - pip:
-            - numpy>1.19.0
-            - --index-url http://imos-artifacts.s3-website-ap-southeast-2.amazonaws.com/repo/pypi/build/
-            - --extra-index-url https://pypi.python.org/simple/
-            - --trusted-host imos-artifacts.s3-website-ap-southeast-2.amazonaws.com
-            - pytest-cov
-            - -c constraints.txt
-            - -e .
-            - -e .[testing]
-      dest: "{{aodndata_dir}}/stage_environment.yml"
-      backup: yes
-
-- name: create aodndata mamba env
-  shell: "[[ $({{miniforge_path}}/condabin/mamba env list | cut -d' ' -f1) = *'{{conda_aodndata}}'* ]] && echo '{{conda_aodndata}} mamba env already installed' || {{miniforge_path}}/condabin/mamba env create -f stage_environment.yml"
-  args:
-    executable: /bin/bash
-    chdir: "{{aodndata_dir}}"
-  become: yes
-  become_user: "{{ user }}"
-  ignore_errors: true
-
-- name: update aodndata mamba env
-  shell: "{{miniforge_path}}/condabin/mamba env update -f stage_environment.yml"
-  args:
-    chdir: "{{aodndata_dir}}"
-  become: yes
-  become_user: "{{ user }}"
-  ignore_errors: true
-
+# - name: create python-aodndata mamba yaml
+#   ignore_errors: yes
+#   copy:
+#       content: |
+#         # An environment file for Project Officers wanted to use Conda rather than
+#         # virtualenv
+#         # This is based on scripts/setup_virtualenv.sh and doesn't interfere with the
+#         # wheel package
+#         # stage values are "build", "rc", "production"
+#         # mamba env create --file=stage_environment.yml
+#         # mamba env update --file=stage_environment.yml
+#         name: "{{conda_aodndata}}"
+#         channels:
+#           - conda-forge
+#           - defaults
+#           - pypi
+#         dependencies:
+#           - cython
+#           - python=3.8
+#           - cartopy=0.20.3
+#           - cf-units
+#           - pip
+#           - pip:
+#             - numpy>1.19.0
+#             - --index-url http://imos-artifacts.s3-website-ap-southeast-2.amazonaws.com/repo/pypi/build/
+#             - --extra-index-url https://pypi.python.org/simple/
+#             - --trusted-host imos-artifacts.s3-website-ap-southeast-2.amazonaws.com
+#             - pytest-cov
+#             - -c constraints.txt
+#             - -e .
+#             - -e .[testing]
+#       dest: "{{aodndata_dir}}/stage_environment.yml"
+#       backup: yes
+#
+# - name: create aodndata mamba env
+#   shell: "[[ $({{miniforge_path}}/condabin/mamba env list | cut -d' ' -f1) = *'{{conda_aodndata}}'* ]] && echo '{{conda_aodndata}} mamba env already installed' || {{miniforge_path}}/condabin/mamba env create -f stage_environment.yml"
+#   args:
+#     executable: /bin/bash
+#     chdir: "{{aodndata_dir}}"
+#   become: yes
+#   become_user: "{{ user }}"
+#   ignore_errors: true
+#
+# - name: update aodndata mamba env
+#   shell: "{{miniforge_path}}/condabin/mamba env update -f stage_environment.yml"
+#   args:
+#     chdir: "{{aodndata_dir}}"
+#   become: yes
+#   become_user: "{{ user }}"
+#   ignore_errors: true
+#
 
 #################
 # ncvue conda
@@ -153,16 +153,16 @@
       dest: "{{ tempfile_1.path }}"
       backup: yes
 
-- name: create imos-toolbox mamba env
-  shell: "[[ $({{miniforge_path}}/condabin/mamba env list | cut -d' ' -f1) = *'{{conda_ncvue}}'* ]] \
-          && echo '{{conda_ncvue}} mamba env already installed' || \
-          {{miniforge_path}}/condabin/mamba env create -f '{{ tempfile_1.path }}'"
-  args:
-    executable: /bin/bash
-  become: yes
-  become_user: "{{ user }}"
-  ignore_errors: true
-
+# - name: create imos-toolbox mamba env
+#   shell: "[[ $({{miniforge_path}}/condabin/mamba env list | cut -d' ' -f1) = *'{{conda_ncvue}}'* ]] \
+#           && echo '{{conda_ncvue}} mamba env already installed' || \
+#           {{miniforge_path}}/condabin/mamba env create -f '{{ tempfile_1.path }}'"
+#   args:
+#     executable: /bin/bash
+#   become: yes
+#   become_user: "{{ user }}"
+#   ignore_errors: true
+#
 - name: update ncvue-toolbox mamba env
   shell: "{{miniforge_path}}/condabin/mamba env update -f {{ tempfile_1.path }}"
   become: yes

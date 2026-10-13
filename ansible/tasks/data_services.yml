@@ -21,20 +21,20 @@
   with_items:
     - { url: "{{repo_data_services}}", name: data-services }
   ignore_errors: true
-
-- name: create data-services miniforge env
-  shell: "[[ $({{miniforge_path}}/condabin/mamba env list | cut -d' ' -f1) = *'{{conda_data_services}}'* ]] && echo '{{conda_data_services}} mamba env already installed' || {{miniforge_path}}/condabin/mamba env create -f environment.yml"
-  args:
-    executable: /bin/bash
-    chdir: "{{data_services_dir}}"
-  become: yes
-  become_user: "{{ user }}"
-  ignore_errors: true
-
-- name: update data-services miniforge env
-  shell: "{{miniforge_path}}/condabin/mamba env update -f environment.yml"
-  args:
-    chdir: "{{data_services_dir}}"
-  become: yes
-  become_user: "{{ user }}"
-  ignore_errors: true
+#
+# - name: create data-services miniforge env
+#   shell: "[[ $({{miniforge_path}}/condabin/mamba env list | cut -d' ' -f1) = *'{{conda_data_services}}'* ]] && echo '{{conda_data_services}} mamba env already installed' || {{miniforge_path}}/condabin/mamba env create -f environment.yml"
+#   args:
+#     executable: /bin/bash
+#     chdir: "{{data_services_dir}}"
+#   become: yes
+#   become_user: "{{ user }}"
+#   ignore_errors: true
+#
+# - name: update data-services miniforge env
+#   shell: "{{miniforge_path}}/condabin/mamba env update -f environment.yml"
+#   args:
+#     chdir: "{{data_services_dir}}"
+#   become: yes
+#   become_user: "{{ user }}"
+#   ignore_errors: true
