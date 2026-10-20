@@ -67,6 +67,7 @@
     - dfc
     - diff-so-fancy
     - dust
+    - eza
     - fd
     - fpp
     - freetype # for python matplotlib
@@ -78,6 +79,7 @@
     - gh # github cli
     - glow
     - grc
+    - hexyl
     - htop
     - httpie
     - hugo
