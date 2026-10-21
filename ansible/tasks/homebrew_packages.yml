@@ -85,6 +85,7 @@
     - hugo
     - hub
     - lazygit
+    - lazydocker
     - lf # ranger clone
     - lnav
     - lsd
@@ -97,6 +98,7 @@
     - openssh
     - p7zip
     - pgcli
+    - poppler
     - pyenv
     - pyenv-virtualenv
     - python@3.11
@@ -109,6 +111,7 @@
     - starship
     - task
     - terminal-browser
+    - termshark
     - the_silver_searcher
     - thefuck
     - tig
